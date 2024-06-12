@@ -5,6 +5,8 @@ extends CharacterBody3D
 @export var WALKSPEED : float
 @export var RUNSPEED : float
 @export var sens : float
+@onready var menu = $CollisionShape3D/head/menu
+var paused = false
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -36,6 +38,8 @@ func _physics_process(delta):
 		SPEED = RUNSPEED
 	else: SPEED = WALKSPEED	
 	
+	if Input.is_action_just_pressed("pause"):
+		pause_game()
 	#set directions
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
@@ -47,5 +51,14 @@ func _physics_process(delta):
 
 	move_and_slide()
 
+func pause_game():
+	if paused:
+		menu.hide()
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	else:
+		menu.show()
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		get_tree().paused
+	paused = !paused	
 	
 			

@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://ddmkmff5f4ojl"]
+[gd_scene load_steps=5 format=3 uid="uid://ddmkmff5f4ojl"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_7patl"]
-[ext_resource type="PackedScene" uid="uid://q6sfmf8k0p1e" path="res://interactor.tscn" id="2_iw3hh"]
+[ext_resource type="PackedScene" uid="uid://dlq737pe2rwef" path="res://UI/menu.tscn" id="3_tb5oy"]
+[ext_resource type="PackedScene" uid="uid://q6sfmf8k0p1e" path="res://player/interactor.tscn" id="3_xn14h"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_niyqy"]
 
@@ -17,5 +18,8 @@ shape = SubResource("CapsuleShape3D_niyqy")
 [node name="head" type="Camera3D" parent="CollisionShape3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.678213, 0)
 
-[node name="Interactor" parent="CollisionShape3D/head" instance=ExtResource("2_iw3hh")]
+[node name="menu" parent="CollisionShape3D/head" instance=ExtResource("3_tb5oy")]
+visible = false
+
+[node name="Interactor" parent="CollisionShape3D/head" instance=ExtResource("3_xn14h")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.761429)

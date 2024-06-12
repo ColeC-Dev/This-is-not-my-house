@@ -1,0 +1,10 @@
+extends Control
+@onready var Quit = $CanvasLayer/quit
+@onready var Restart = $CanvasLayer/Restart
+
+# Called when the node enters the scene tree for the first time.
+func _on_quit_pressed():
+	get_tree().quit()
+
+func _on_restart_pressed():
+	get_tree().reload_current_scene()

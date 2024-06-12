@@ -2,7 +2,9 @@
 
 [ext_resource type="Script" path="res://home/home.gd" id="1_8vbdy"]
 [ext_resource type="PackedScene" uid="uid://ddmkmff5f4ojl" path="res://player/player.tscn" id="1_b2al5"]
-[ext_resource type="PackedScene" uid="uid://purn83j1l7xk" path="res://test_pickobject.tscn" id="3_e4o8f"]
+[ext_resource type="PackedScene" uid="uid://0vb2urfb6ul7" path="res://NPC/partygoer.tscn" id="4_1wkh5"]
+[ext_resource type="PackedScene" uid="uid://cj2dxbnxru8qx" path="res://home/test_apartment.tscn" id="4_uaqe8"]
+[ext_resource type="AudioStream" uid="uid://c0rxytrj25123" path="res://Music/partymusic.ogg" id="5_kdieo"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kb0ci"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -12,38 +14,77 @@ ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 sky_material = SubResource("ProceduralSkyMaterial_kb0ci")
 
 [sub_resource type="Environment" id="Environment_jiq16"]
-background_mode = 2
+background_energy_multiplier = 0.0
 sky = SubResource("Sky_ks58m")
+ambient_light_source = 3
+ambient_light_energy = 0.0
 tonemap_mode = 2
 glow_enabled = true
 volumetric_fog_enabled = true
 
-[sub_resource type="BoxMesh" id="BoxMesh_lribm"]
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_hij37"]
-data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
-
 [node name="home" type="Node3D"]
 script = ExtResource("1_8vbdy")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
-shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_jiq16")
 
-[node name="floor" type="MeshInstance3D" parent="."]
-transform = Transform3D(15.5236, 0, 0, 0, 0.155704, 0, 0, 0, 15.2401, 0, 0, 0)
-mesh = SubResource("BoxMesh_lribm")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="floor"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="floor/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_hij37")
-
 [node name="player" parent="." instance=ExtResource("1_b2al5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.251345, 0.996804, 0.0360343)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.64968, 1.45986, 9.04382)
 
-[node name="test_pickobject" parent="." instance=ExtResource("3_e4o8f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.88797, 0.971827, -4.21594)
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.91112, 1.99658, 8.14445)
+light_color = Color(0.454902, 0.407843, 0.282353, 1)
+light_energy = 4.0
+light_volumetric_fog_energy = 3.729
+omni_range = 4.0
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.03993, 2.99658, 8.14445)
+light_color = Color(0.454902, 0.407843, 0.282353, 1)
+light_energy = 4.0
+light_volumetric_fog_energy = 3.729
+omni_range = 4.0
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.13616, 2.99658, 8.14445)
+light_color = Color(0.454902, 0.407843, 0.282353, 1)
+light_energy = 4.0
+light_volumetric_fog_energy = 3.729
+omni_range = 4.0
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.87299, 3.34887, 1.79892)
+light_color = Color(0.298039, 0.4, 0.219608, 1)
+light_energy = 5.0
+light_volumetric_fog_energy = 3.729
+omni_range = 8.78674
+
+[node name="test apartment" parent="." instance=ExtResource("4_uaqe8")]
+transform = Transform3D(0.815798, 0, 0, 0, 0.815798, 0, 0, 0, 0.815798, -3.61848, -1.19209e-07, 3.829)
+
+[node name="partygoer" parent="." instance=ExtResource("4_1wkh5")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -4.12091, 0, -0.572187)
+
+[node name="partygoer2" parent="." instance=ExtResource("4_1wkh5")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -6.91104, 0, 3.82266)
+
+[node name="partygoer3" parent="." instance=ExtResource("4_1wkh5")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -7.90758, 0, 0.29057)
+
+[node name="partygoer4" parent="." instance=ExtResource("4_1wkh5")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -2.37126, 0, 8.55905)
+
+[node name="partygoer6" parent="." instance=ExtResource("4_1wkh5")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -0.904401, 0, 3.88298)
+
+[node name="partygoer7" parent="." instance=ExtResource("4_1wkh5")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0.980486, 0, -0.948594)
+
+[node name="partygoer5" parent="." instance=ExtResource("4_1wkh5")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 1.95324, 0.318601, 8.55905)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.62164, 3.98685, 1.96849)
+stream = ExtResource("5_kdieo")
+volume_db = -12.0
+autoplay = true
